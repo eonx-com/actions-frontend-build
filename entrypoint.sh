@@ -39,4 +39,3 @@ echo
 echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
 echo
 yarn build --mode=${INPUT_ENVIRONMENT};
-UT_ENVIRONM
