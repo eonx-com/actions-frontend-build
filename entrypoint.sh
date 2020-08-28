@@ -40,5 +40,4 @@ cat ${ENVIRONMENT_FILE}
 
 cd ${GITHUB_WORKSPACE};
 yarn;
-yarn clean;
 npx lerna exec --scope ${PACKAGE_SCOPE} -- "export \$(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs) && yarn build;"
