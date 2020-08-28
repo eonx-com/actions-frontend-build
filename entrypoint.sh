@@ -11,23 +11,24 @@ if [[ ! -d ${PACKAGE_FOLDER} ]]; then
   echo "ERROR: Could not locate package folder (${PACKAGE_FOLDER})";
   exit 1;
 fi
+cd "${PACKAGE_FOLDER}" || exit 2;
 
 echo
 echo "Validating package configuration..."
 if [[ ! -f ${PACKAGE_CONFIG_FILE} ]]; then
   echo "ERROR: Could not locate package configuration file (${PACKAGE_CONFIG_FILE})";
-  exit 2;
+  exit 3;
 fi
 
 echo
 echo "Loading environment variables..."
 if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
   echo "ERROR: Could not locate environment variables in project folder (${ENVIRONMENT_FILE})";
-  exit 3;
+  exit 4;
 fi
-export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
-cd ${PACKAGE_FOLDER};
+# shellcheck disable=SC2086,SC2046
+export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
 echo
 echo "Running 'yarn'..."
@@ -35,7 +36,7 @@ echo
 yarn;
 
 echo
-echo "Running 'yarn build --mode={INPUT_ENVIRONMENT}'..."
+echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
 echo
 yarn build --mode=${INPUT_ENVIRONMENT};
 UT_ENVIRONM
