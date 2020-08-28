@@ -8,7 +8,8 @@ RUN apt-get install -y --no-install-recommends \
         libnss3 \
         libxss1 \
         libasound2 \
-        xvfb;
+        xvfb \
+        jq;
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
