@@ -32,12 +32,9 @@ if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
   echo "ERROR: Could not locate environment variables in project folder (${ENVIRONMENT_FILE})";
   exit 4;
 fi
-
-echo
-echo "Building: ${PACKAGE_NAME} (${ENVIRONMENT})"
-echo "Environment File: ${ENVIRONMENT_FILE}"
 cat ${ENVIRONMENT_FILE}
+export \$(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
 cd ${GITHUB_WORKSPACE};
 yarn;
-npx lerna exec --scope ${PACKAGE_SCOPE} -- "export \$(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs) && yarn build;"
+yarn build --mode=${INPUT_ENVIRONMENT};
