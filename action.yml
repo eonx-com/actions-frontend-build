@@ -1,0 +1,13 @@
+name: 'Frontend Build'
+description: 'Frontend Build Github Action'
+author: 'Damian Sloane <damian.sloane@eonx.com>'
+inputs:
+  path:
+    description: 'Path to the package to be deployed relative to the repository root'
+    required: true
+  environment:
+    description: 'Environment code, this should be lowercase and hyphenated (e.g. "dev", "staging", "prod")'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
