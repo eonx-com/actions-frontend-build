@@ -26,8 +26,9 @@ if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
 fi
 
 cat ${ENVIRONMENT_FILE}
-export \$(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
+export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
 cd ${GITHUB_WORKSPACE};
 yarn;
-yarn build --mode=${INPUT_ENVIRONMENT};
+yarn build --mode=${INPENT};
+UT_ENVIRONM
