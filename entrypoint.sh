@@ -36,6 +36,6 @@ echo
 yarn;
 
 echo
-echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
+echo "Running 'yarn build '..."
 echo
-yarn build --mode=${INPUT_ENVIRONMENT};
+yarn build;
