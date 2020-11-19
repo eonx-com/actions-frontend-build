@@ -9,6 +9,10 @@ inputs:
   environment:
     description: 'Environment code, this should be lowercase and hyphenated (e.g. "dev", "staging", "prod")'
     required: true
+  npm_token:
+    description: 'GitHub packages access token'
+    default: ""
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

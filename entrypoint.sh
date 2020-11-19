@@ -2,10 +2,16 @@
 set -eo pipefail
 
 # shellcheck disable=SC2034
-NPM_TOKEN="${INPUT_NPM_TOKEN}"
+
 PACKAGE_FOLDER="${GITHUB_WORKSPACE}/${INPUT_PATH}";
 PACKAGE_CONFIG_FILE=$(echo "${PACKAGE_FOLDER}/package.json" | sed s#//*#/#g)
 ENVIRONMENT_FILE=$(echo "${PACKAGE_FOLDER}/.env.${INPUT_ENVIRONMENT}" | sed s#//*#/#g)
+
+# If an NPM token was set- expose it
+if [[ ! -z "${INPUT_NPM_TOKEN}" ]];
+  echo "Setting NPM token..."
+  NPM_TOKEN="${INPUT_NPM_TOKEN}"
+fi
 
 echo;
 echo "Validating package folder...";
