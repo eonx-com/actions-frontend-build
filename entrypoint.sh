@@ -8,7 +8,7 @@ PACKAGE_FOLDER="${GITHUB_WORKSPACE}/${INPUT_PATH}";
 PACKAGE_CONFIG_FILE=$(echo "${PACKAGE_FOLDER}/package.json" | sed s#//*#/#g)
 ENVIRONMENT_FILE=$(echo "${PACKAGE_FOLDER}/.env.${INPUT_ENVIRONMENT}" | sed s#//*#/#g)
 
-
+echo "Validating environment name...";
 if [[ "${INPUT_ENVIRONMENT}" != "dev" && "${INPUT_ENVIRONMENT}" != "staging" && "${INPUT_ENVIRONMENT}" != "prod" ]]; then
   echo "ERROR: Invalid environment specified (${INPUT_ENVIRONMENT}). Must be one of 'dev', 'staging', or 'prod'"
   exit 1;
