@@ -31,19 +31,19 @@ if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
   exit 4
 fi
 
+# If an NPM token was set- expose it
+if [[ ! -z "${INPUT_NPM_TOKEN}" ]]; then
+  echo "Exporting NPM token..."
+  export NPM_TOKEN="${INPUT_NPM_TOKEN}"
+else
+  echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available!";
+fi
+
 # shellcheck disable=SC2086,SC2046
 export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
-
-# If an NPM token was set- expose it
-if [[ -n "${INPUT_NPM_TOKEN}" ]]; then
-  export NPM_TOKEN="${INPUT_NPM_TOKEN}"
-else
-  echo -e "\e[91mWARNING: No NPM_TOKEN value was specified- private repository access will not be available!\e[37m"
-fi
-
 echo "Running 'yarn'..."
-yarn
+yarn || exit 1;
 
 echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
-yarn build --mode=${INPUT_ENVIRONMENT}
+yarn build --mode=${INPUT_ENVIRONMENT} || exit 2
