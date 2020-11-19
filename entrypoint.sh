@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
+echo
 
 # shellcheck disable=SC2034
 
@@ -15,7 +16,6 @@ else
   echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available"
 fi
 
-echo;
 echo "Validating package folder...";
 if [[ ! -d ${PACKAGE_FOLDER} ]]; then
   echo "ERROR: Could not locate package folder (${PACKAGE_FOLDER})";
@@ -23,14 +23,12 @@ if [[ ! -d ${PACKAGE_FOLDER} ]]; then
 fi
 cd "${PACKAGE_FOLDER}" || exit 2;
 
-echo;
 echo "Validating package configuration...";
 if [[ ! -f ${PACKAGE_CONFIG_FILE} ]]; then
   echo "ERROR: Could not locate package configuration file (${PACKAGE_CONFIG_FILE})";
   exit 3;
 fi
 
-echo;
 echo "Loading environment variables...";
 if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
   echo "ERROR: Could not locate environment variables in project folder (${ENVIRONMENT_FILE})";
@@ -41,12 +39,8 @@ fi
 export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 export
 
-echo;
 echo "Running 'yarn'...";
-echo;
 yarn;
 
-echo;
 echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
-echo;
 yarn build --mode=${INPUT_ENVIRONMENT};
