@@ -29,8 +29,10 @@ if [[ ! -f ${ENVIRONMENT_FILE} ]]; then
   exit 4;
 fi
 
+export
 # shellcheck disable=SC2086,SC2046
 export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
+export
 
 echo;
 echo "Running 'yarn'...";
