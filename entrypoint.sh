@@ -39,6 +39,7 @@ fi
 
 # shellcheck disable=SC2086,SC2046
 export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
+export
 
 echo;
 echo "Running 'yarn'...";
