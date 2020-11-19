@@ -36,7 +36,7 @@ fi
 # If an NPM token was set- expose it
 if [[ ! -z "${INPUT_NPM_TOKEN}" ]]; then
   echo "Setting NPM token..."
-  export NODE_AUTH_TOKEN="${INPUT_NPM_TOKEN}"
+  export NPM_TOKEN="${INPUT_NPM_TOKEN}"
 else
   echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available"
 fi
