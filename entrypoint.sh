@@ -11,6 +11,8 @@ ENVIRONMENT_FILE=$(echo "${PACKAGE_FOLDER}/.env.${INPUT_ENVIRONMENT}" | sed s#//
 if [[ ! -z "${INPUT_NPM_TOKEN}" ]]; then
   echo "Setting NPM token..."
   NPM_TOKEN="${INPUT_NPM_TOKEN}"
+else
+  echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available"
 fi
 
 echo;
