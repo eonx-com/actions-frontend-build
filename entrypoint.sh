@@ -37,8 +37,9 @@ fi
 if [[ ! -z "${INPUT_NPM_TOKEN}" ]]; then
   echo "Setting NPM token..."
   export NPM_TOKEN="${INPUT_NPM_TOKEN}"
-  npm login --registry=https://npm.pkg.github.com --scope=@eonx-com
+  npm --version
   npm cache clean
+  npm login --registry=https://npm.pkg.github.com --scope=@eonx-com
 else
   echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available"
 fi
