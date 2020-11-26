@@ -39,3 +39,10 @@ echo
 echo "Running 'yarn build '..."
 echo
 yarn build;
+
+echo
+echo "Creating revision file with commit hash: ${GITHUB_SHA}"
+echo
+echo "${GITHUB_SHA}" >> ./dist/revision.txt;
+
+
