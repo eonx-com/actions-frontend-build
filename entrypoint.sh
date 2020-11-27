@@ -36,14 +36,19 @@ if [[ ! -z "${INPUT_NPM_TOKEN}" ]]; then
   echo "Exporting NPM token..."
   export NPM_TOKEN="${INPUT_NPM_TOKEN}"
 else
-  echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available!";
+  echo "WARNING: No NPM_TOKEN value was specified- private repository access will not be available!"
 fi
 
 # shellcheck disable=SC2086,SC2046
 export $(egrep -v '^#' ${ENVIRONMENT_FILE} | xargs)
 
 echo "Running 'yarn'..."
-yarn || exit 1;
+yarn || exit 1
 
 echo "Running 'yarn build --mode=${INPUT_ENVIRONMENT}'..."
 yarn build --mode=${INPUT_ENVIRONMENT} || exit 2
+
+echo
+echo "Creating revision file with commit hash: ${GITHUB_SHA}"
+echo
+echo "${GITHUB_SHA}" >> "${INPUT_REVISION_FILE_LOCATION}"

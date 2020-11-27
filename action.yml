@@ -13,6 +13,10 @@ inputs:
     description: 'GitHub packages access token'
     default: ""
     required: false
+  revision_file_location:
+    description: 'Relative path for creation of a revision.txt file with the commit hash'
+    default: "./dist/revision.txt"
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
