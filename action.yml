@@ -14,8 +14,8 @@ inputs:
     default: ""
     required: false
   revision_file_location:
-    description: 'Relative path for creation of a revision.txt file with the commit hash'
-    default: "./dist/revision.txt"
+    description: 'Relative path for creation of a revision.txt file with the commit hash (e.g. ./dist/benefits/, ./dist/)'
+    default: "./dist/"
     required: false
 runs:
   using: 'docker'

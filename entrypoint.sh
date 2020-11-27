@@ -51,4 +51,4 @@ yarn build --mode=${INPUT_ENVIRONMENT} || exit 2
 echo
 echo "Creating revision file with commit hash: ${GITHUB_SHA}"
 echo
-echo "${GITHUB_SHA}" >> "${INPUT_REVISION_FILE_LOCATION}"
+echo "${GITHUB_SHA}" >> "${INPUT_REVISION_FILE_LOCATION}/revision.txt"
