@@ -9,6 +9,10 @@ inputs:
   environment:
     description: 'Environment code, this should be lowercase and hyphenated (e.g. "dev", "staging", "prod")'
     required: true
+  revision_file_location:
+    description: 'Relative path for creation of a revision.txt file with the commit hash (e.g. ./dist/benefits/, ./dist/)'
+    default: "./dist/"
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

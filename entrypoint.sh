@@ -43,6 +43,6 @@ yarn build;
 echo
 echo "Creating revision file with commit hash: ${GITHUB_SHA}"
 echo
-echo "${GITHUB_SHA}" >> ./dist/revision.txt;
+echo "${GITHUB_SHA}" >> "${INPUT_REVISION_FILE_LOCATION}/revision.txt"
 
 
